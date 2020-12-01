@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.1.RELEASE</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>cn.youwei.flow</groupId>
+  <artifactId>sparrow-trial</artifactId>
+  <version>1.0.0</version>
+
+  <description>Generated project sparrow-trial</description>
+
+  <properties>
+    <java.version>11</java.version>
+    <kogito.version>1.0.0.Final</kogito.version>
+    <!-- springboot related -->
+    <springboot.version>2.3.1.RELEASE</springboot.version>
+    <!-- cloudevents -->
+    <version.cloudevents.api>2.0.0-milestone3</version.cloudevents.api>
+    <!-- testcontainers -->
+    <version.testcontainers>1.15.0</version.testcontainers>
+  </properties>
+
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${springboot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.kie.kogito</groupId>
+        <artifactId>kogito-bom</artifactId>
+        <version>${kogito.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- config the swagger edittor-->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.4.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>process-management-addon</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-springboot-starter</artifactId>
+      <version>${kogito.version}</version>
+    </dependency>
+
+
+    <!--for kafka-->
+  <dependency> 
+    <groupId>org.kie.kogito</groupId>
+    <artifactId>kogito-cloudevents-spring-boot-addon</artifactId>
+  </dependency> 
+  <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>io.cloudevents</groupId>
+    <artifactId>cloudevents-api</artifactId>
+    <version>${version.cloudevents.api}</version>
+  </dependency>
+  <dependency>
+    <groupId>io.cloudevents</groupId>
+    <artifactId>cloudevents-core</artifactId>
+    <version>${version.cloudevents.api}</version>
+  </dependency>
+  <dependency>
+    <groupId>io.cloudevents</groupId>
+    <artifactId>cloudevents-json-jackson</artifactId>
+    <version>${version.cloudevents.api}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.testcontainers</groupId>
+    <artifactId>kafka</artifactId>
+    <version>${version.testcontainers}</version>
+  </dependency>
+
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-test-utils</artifactId>
+      <version>${kogito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-api</artifactId>
+      <version>${version.cloudevents.api}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.cloudevents</groupId>
+      <artifactId>cloudevents-json-jackson</artifactId>
+      <version>${version.cloudevents.api}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.kie.kogito</groupId>
+        <artifactId>kogito-maven-plugin</artifactId>
+        <version>${kogito.version}</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>io.openapitools.swagger</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>2.1.0</version>
+        <configuration>
+          <resourcePackages>
+            <resourcePackage>cn.youwei.flow</resourcePackage>
+          </resourcePackages>
+          <outputDirectory>${basedir}/target/classes/static/</outputDirectory>
+          <outputFilename>openapi</outputFilename>
+          <outputFormats>JSON,YAML</outputFormats>
+          <prettyPrint>true</prettyPrint>
+          <swaggerConfig>
+            <info>
+              <title>Kogito based on SpringBoot runtime Archetype</title>
+              <version>1.0.0.Final</version>
+            </info>
+          </swaggerConfig>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+<profiles>
+  <profile>
+    <id>events</id>
+    <activation>
+      <property>
+        <name>events</name>
+      </property>
+    </activation>
+    <properties>
+      <enable.resource.kafka>true</enable.resource.kafka>
+    </properties>
+    <dependencies>
+      <dependency>
+        <groupId>org.kie.kogito</groupId>
+        <artifactId>kogito-events-spring-boot-addon</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.kie.kogito</groupId>
+        <artifactId>mongodb-persistence-addon</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+    </dependencies>
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <systemPropertyVariables>
+              <enable.resource.kafka>true</enable.resource.kafka>
+              <enable.resource.mongodb>true</enable.resource.mongodb>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+  </profile>
+</profiles>
+</project>
