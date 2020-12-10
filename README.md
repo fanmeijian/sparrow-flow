@@ -1,2 +1,2 @@
-# sparrow-bpm
-bpm app base on kogito
+# sparrow-flow
+flows base on kogito
